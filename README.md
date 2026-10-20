@@ -25,9 +25,8 @@ enfermas de la prueba fueron clasificadas como sanas.
 | `notebooks/02_modelo_clasico.ipynb` | Características de color, Random Forest y comparación de modelos clásicos |
 | `notebooks/03_redes_neuronales.ipynb` | Una neurona a mano y filtros de convolución |
 | `notebooks/04_cnn.ipynb` | Entrenamiento y evaluación de la CNN |
+| `notebooks/05_demo.ipynb` | Demostración: carga la red guardada y abre una aplicación para clasificar fotos |
 | `src/descargar_datos.py` | Descarga PlantVillage desde Kaggle a `data/` |
-| `src/preparar_datos.py` | Copia solo las clases de tomate a `data/tomate/` |
-| `modelos/red_tomate.pt` | Pesos de la CNN entrenada |
 
 ## Cómo ejecutarlo
 
@@ -45,8 +44,7 @@ Después abrir los notebooks en orden, con el kernel del entorno `.venv`.
 El entrenamiento de la CNN tarda alrededor de una hora en CPU. Para usar la red sin
 entrenar, cargar los pesos guardados como muestra la última sección del notebook 04.
 
-| `notebooks/05_demo.ipynb` 
-| Demostración: carga la red guardada y abre una aplicación para clasificar fotos |
+
 ## Demostración
 
 Ejecutar todas las celdas de `notebooks/05_demo.ipynb` (no entrena nada, tarda segundos)
