@@ -8,3 +8,4 @@ torchvision
 pillow
 kagglehub
 scipy
+gradio
