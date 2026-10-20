@@ -44,3 +44,14 @@ Después abrir los notebooks en orden, con el kernel del entorno `.venv`.
 
 El entrenamiento de la CNN tarda alrededor de una hora en CPU. Para usar la red sin
 entrenar, cargar los pesos guardados como muestra la última sección del notebook 04.
+
+| `notebooks/05_demo.ipynb` 
+| Demostración: carga la red guardada y abre una aplicación para clasificar fotos |
+## Demostración
+
+Ejecutar todas las celdas de `notebooks/05_demo.ipynb` (no entrena nada, tarda segundos)
+y abrir `http://127.0.0.1:7860` en el navegador. Se puede subir una foto o elegir una de
+las fotos de ejemplo, que son de la prueba y la red nunca vio.
+
+El modelo se entrenó con fotos de laboratorio: con fotos de campo puede equivocarse,
+incluso mostrando 100% de seguridad.
