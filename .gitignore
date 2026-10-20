@@ -1,4 +1,5 @@
 data/
 .ipynb_checkpoints/
 .venv/
-imagenes prueba/.gradio
+imagenes prueba/
+.gradio/
