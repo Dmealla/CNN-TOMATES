@@ -27,6 +27,8 @@ enfermas de la prueba fueron clasificadas como sanas.
 | `notebooks/04_cnn.ipynb` | Entrenamiento y evaluación de la CNN |
 | `notebooks/05_demo.ipynb` | Demostración: carga la red guardada y abre una aplicación para clasificar fotos |
 | `src/descargar_datos.py` | Descarga PlantVillage desde Kaggle a `data/` |
+| `src/preparar_datos.py` | Copia solo las clases de tomate a `data/tomate/` |
+| `modelos/red_tomate.pt` | Pesos de la CNN entrenada |
 
 ## Cómo ejecutarlo
 
