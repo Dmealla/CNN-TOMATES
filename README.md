@@ -2,20 +2,30 @@
 
 Proyecto de ciencia de datos que clasifica fotos de hojas de tomate para detectar
 si la planta está sana o qué enfermedad tiene (10 clases).
-Compara un modelo clásico de machine learning con una red neuronal convolucional (CNN).
+Compara un modelo clásico de machine learning, una red convolucional propia y
+transfer learning con ResNet18.
 
 Datos: conjunto PlantVillage, solo las 16.011 fotos de tomate.
 
 ## Resultados
 
-| Modelo | Exactitud en prueba |
-|---|---|
-| Random Forest (6 características de color) | 0,72 |
-| CNN en PyTorch (2 capas de convolución) | 0,91 |
+| Modelo | Notebook | Exactitud en prueba |
+|---|---|---|
+| Random Forest (6 características de color) | 02 | 0,72 |
+| CNN propia (2 capas de convolución) | 04 | 0,91 |
+| CNN propia con aumento de datos | 06 | 0,88 |
+| ResNet18 con aumento de datos y ajuste fino | 07 | **0,95** |
 
-La CNN mejora sobre todo en las enfermedades que se parecen en el color pero no en la forma
-de las manchas: el recall del tizón temprano pasó de 0,34 a 0,78. Solo 2 de 1.444 hojas
-enfermas de la prueba fueron clasificadas como sanas.
+- **Mirar formas y no solo colores fue el salto más grande:** el recall del tizón temprano pasó
+  de 0,34 (Random Forest) a 0,78 (CNN propia) y a 0,90 (ResNet18).
+- **El aumento de datos eliminó el sobreajuste,** pero la red propia era demasiado chica para
+  aprovecharlo. Con ResNet18 sí funcionó.
+- **Solo 2 de 1.444 hojas enfermas** de la prueba fueron clasificadas como sanas.
+- **Límite:** los tres modelos fallan con fotos de campo (varias hojas, fondo de tierra), porque
+  todas las fotos de entrenamiento son de laboratorio. El próximo paso no es un modelo más grande,
+  sino entrenar con fotos reales.
+
+![Matriz de confusión](imagenes/matriz_confusion_cnn.png)
 
 ## Contenido
 
@@ -24,11 +34,16 @@ enfermas de la prueba fueron clasificadas como sanas.
 | `notebooks/01_exploracion.ipynb` | Exploración de las fotos y cantidad por clase |
 | `notebooks/02_modelo_clasico.ipynb` | Características de color, Random Forest y comparación de modelos clásicos |
 | `notebooks/03_redes_neuronales.ipynb` | Una neurona a mano y filtros de convolución |
-| `notebooks/04_cnn.ipynb` | Entrenamiento y evaluación de la CNN |
-| `notebooks/05_demo.ipynb` | Demostración: carga la red guardada y abre una aplicación para clasificar fotos |
+| `notebooks/04_cnn.ipynb` | Entrenamiento y evaluación de la CNN propia |
+| `notebooks/05_demo.ipynb` | Demostración: aplicación para clasificar fotos |
+| `notebooks/06_aumento_datos.ipynb` | La misma CNN con aumento de datos |
+| `notebooks/07_transfer_learning.ipynb` | ResNet18 preentrenada con ajuste fino |
 | `src/descargar_datos.py` | Descarga PlantVillage desde Kaggle a `data/` |
 | `src/preparar_datos.py` | Copia solo las clases de tomate a `data/tomate/` |
-| `modelos/red_tomate.pt` | Pesos de la CNN entrenada |
+| `modelos/red_tomate.pt` | Pesos de la CNN propia |
+| `modelos/red_tomate_aumento.pt` | Pesos de la CNN propia con aumento de datos |
+| `modelos/red_tomate_resnet.pt` | Pesos de ResNet18 ajustada |
+| `imagenes/` | Gráficos del proyecto |
 
 ## Cómo ejecutarlo
 
@@ -43,9 +58,8 @@ python -m venv .venv
 
 Después abrir los notebooks en orden, con el kernel del entorno `.venv`.
 
-El entrenamiento de la CNN tarda alrededor de una hora en CPU. Para usar la red sin
-entrenar, cargar los pesos guardados como muestra la última sección del notebook 04.
-
+En CPU, el entrenamiento de la CNN propia tarda alrededor de una hora, y el de ResNet18
+unos 35 minutos. Para usar los modelos sin entrenar, cargar los pesos de la carpeta `modelos/`.
 
 ## Demostración
 
